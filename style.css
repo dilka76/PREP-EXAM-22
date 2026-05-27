@@ -101,6 +101,8 @@ body {
 .chart-container {
     flex-grow: 1;
     margin-bottom: 20px;
+    position: relative;
+    height: 400px; /* Or any other fixed height */
 }
 
 .chart-container h2 {
