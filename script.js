@@ -25,6 +25,100 @@ document.addEventListener('DOMContentLoaded', function () {
         roi: document.getElementById('summary-roi'),
     };
 
+    const translations = {
+        'english': {
+            'title': 'RESULTSPREDICTOR',
+            'subtitle': 'EMAIL CAMPAIGN',
+            'language': 'Language',
+            'time_unit': 'Time Unit',
+            'week': 'Week',
+            'periods': 'Number of Periods',
+            'currency': 'Currency',
+            'widget_title': 'Would you like to leverage a widget like this one in your campaigns?',
+            'widget_p1': 'Widget like this are always valued by customers.',
+            'widget_p2': 'They are a great way to stimulate engagement and get more people to talk about your products.',
+            'widget_p3': 'It\'s also a great way to generate leads.',
+            'widget_link': 'Click here to learn more about how to get one.',
+            'logo_credit': 'Logo: Designed by Freepik',
+            'metrics_over_time': 'Metrics Over Time',
+            'revenue': 'Revenue',
+            'launching_customers': 'Launching Customers',
+            'revenue_per_conversion': 'Revenue Per Conversion',
+            'customer_growth_rate': 'Customer Growth Rate',
+            'average_response_rate': 'Average Response Rate',
+            'expenses': 'Expenses',
+            'customer_churn_rate': 'Customer Churn Rate',
+            'variable_cost': 'Variable Cost',
+            'fixed_costs': 'Fixed Costs',
+            'starting_cost': 'Starting Cost',
+            'campaign_summary': 'Campaign Summary',
+            'profitable_in_week': 'Profitable in week #',
+            'at_week': 'At week #',
+            'customers': 'Customers:',
+            'revenue_label': 'Revenue:',
+            'expenses_label': 'Expenses:',
+            'total_profit': 'Total Profit',
+            'average_retention': 'Average Retention',
+            'weeks': 'weeks',
+            'return_on_investment': 'Return on investment',
+            'download_csv': 'Download CSV',
+            'load_csv': '↑ Load CSV',
+            'lets_connect': 'Let\'s connect'
+        },
+        'bulgarian': {
+            'title': 'ПРОГНОЗАТОР НА РЕЗУЛТАТИ',
+            'subtitle': 'ИМЕЙЛ КАМПАНИЯ',
+            'language': 'Език',
+            'time_unit': 'Времева единица',
+            'week': 'Седмица',
+            'periods': 'Брой периоди',
+            'currency': 'Валута',
+            'widget_title': 'Искате ли да използвате подобен уиджет във вашите кампании?',
+            'widget_p1': 'Подобни уиджети винаги се ценят от клиентите.',
+            'widget_p2': 'Те са чудесен начин да стимулирате ангажираността и да накарате повече хора да говорят за вашите продукти.',
+            'widget_p3': 'Също така е чудесен начин за генериране на потенциални клиенти.',
+            'widget_link': 'Кликнете тук, за да научите повече как да получите такъв.',
+            'logo_credit': 'Лого: Дизайн от Freepik',
+            'metrics_over_time': 'Показатели във времето',
+            'revenue': 'Приходи',
+            'launching_customers': 'Стартиращи клиенти',
+            'revenue_per_conversion': 'Приход на конверсия',
+            'customer_growth_rate': 'Темп на растеж на клиентите',
+            'average_response_rate': 'Среден процент на отговор',
+            'expenses': 'Разходи',
+            'customer_churn_rate': 'Процент на отлив на клиенти',
+            'variable_cost': 'Променливи разходи',
+            'fixed_costs': 'Фиксирани разходи',
+            'starting_cost': 'Начални разходи',
+            'campaign_summary': 'Обобщение на кампанията',
+            'profitable_in_week': 'Печеливша през седмица #',
+            'at_week': 'През седмица #',
+            'customers': 'Клиенти:',
+            'revenue_label': 'Приходи:',
+            'expenses_label': 'Разходи:',
+            'total_profit': 'Обща печалба',
+            'average_retention': 'Средно задържане',
+            'weeks': 'седмици',
+            'return_on_investment': 'Възвръщаемост на инвестициите',
+            'download_csv': 'Изтегляне на CSV',
+            'load_csv': '↑ Зареждане на CSV',
+            'lets_connect': 'Да се свържем'
+        }
+    };
+
+    function setLanguage(lang) {
+        document.querySelectorAll('[data-translate]').forEach(el => {
+            const key = el.getAttribute('data-translate');
+            if (translations[lang] && translations[lang][key]) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
+    }
+
+    document.getElementById('language').addEventListener('change', (event) => {
+        setLanguage(event.target.value);
+    });
+
     function calculate() {
         const periods = parseInt(inputs.periods.value);
         const launchingCustomers = parseFloat(inputs.launchingCustomers.value);
