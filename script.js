@@ -84,19 +84,65 @@ document.addEventListener('DOMContentLoaded', function () {
         updateChart(profits, customers.slice(1));
     }
 
+    let lastSummaryData = {};
+
     function updateSummary(data) {
+        const duration = 500;
+        if (lastSummaryData.customers !== data.customers) {
+            animateValue(summary.customers, lastSummaryData.customers || 0, data.customers, duration);
+        }
+        if (lastSummaryData.revenue !== data.revenue) {
+            animateDecimalValue(summary.revenue, lastSummaryData.revenue || 0, data.revenue, duration);
+        }
+        if (lastSummaryData.expenses !== data.expenses) {
+            animateDecimalValue(summary.expenses, lastSummaryData.expenses || 0, data.expenses, duration);
+        }
+        if (lastSummaryData.profit !== data.profit) {
+            animateDecimalValue(summary.profit, lastSummaryData.profit || 0, data.profit, duration);
+        }
+        if (lastSummaryData.retention !== data.retention) {
+            animateDecimalValue(summary.retention, lastSummaryData.retention || 0, data.retention, duration);
+        }
+        if (lastSummaryData.roi !== data.roi) {
+            animateDecimalValue(summary.roi, lastSummaryData.roi || 0, data.roi, duration);
+        }
+
         summary.profitableWeek.textContent = data.profitableWeek > 0 ? data.profitableWeek : 'N/A';
         summary.summaryWeek.textContent = data.summaryWeek;
-        summary.customers.textContent = data.customers.toLocaleString();
-        summary.revenue.textContent = `$${data.revenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        summary.expenses.textContent = `$${data.expenses.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        summary.profit.textContent = `$${data.profit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        summary.retention.textContent = data.retention.toFixed(2);
-        summary.roi.textContent = data.roi.toFixed(2);
+
+        lastSummaryData = data;
+    }
+
+    function animateValue(element, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            element.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    function animateDecimalValue(element, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const value = progress * (end - start) + start;
+            element.innerHTML = value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
     }
 
     function updateChart(profitData, customerData) {
         const labels = Array.from({ length: profitData.length }, (_, i) => i + 1);
+        const lang = document.getElementById('language').value;
 
         if (metricsChart) {
             metricsChart.destroy();
@@ -109,19 +155,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 datasets: [
                     {
                         type: 'line',
-                        label: 'Profit',
+                        label: translations[lang].total_profit,
                         data: profitData.map((val, i) => profitData.slice(0, i + 1).reduce((a, b) => a + b, 0)),
-                        borderColor: '#28a745',
-                        backgroundColor: '#28a745',
+                        borderColor: 'var(--accent-color-2)',
+                        backgroundColor: 'var(--accent-color-2)',
                         yAxisID: 'y',
                         tension: 0.4,
-                        fill: false
+                        fill: false,
+                        pointBackgroundColor: 'var(--primary-text)',
+                        pointBorderColor: 'var(--accent-color-2)',
+                        pointHoverRadius: 7,
+                        pointHoverBackgroundColor: 'var(--accent-color-2)',
                     },
                     {
                         type: 'bar',
-                        label: 'Customers',
+                        label: translations[lang].customers,
                         data: customerData,
-                        backgroundColor: '#003366',
+                        backgroundColor: 'var(--accent-color-1)',
                         yAxisID: 'y1',
                     }
                 ]
@@ -129,33 +179,75 @@ document.addEventListener('DOMContentLoaded', function () {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'var(--primary-text)'
+                        }
+                    }
+                },
                 scales: {
                     y: {
                         type: 'linear',
                         display: true,
                         position: 'left',
+                        ticks: {
+                            color: 'var(--secondary-text)'
+                        },
+                        grid: {
+                            color: 'var(--border-color)'
+                        }
                     },
                     y1: {
                         type: 'linear',
                         display: true,
                         position: 'right',
+                        ticks: {
+                            color: 'var(--secondary-text)'
+                        },
                         grid: {
                             drawOnChartArea: false, 
                         },
                     },
+                    x: {
+                        ticks: {
+                            color: 'var(--secondary-text)'
+                        },
+                        grid: {
+                            color: 'var(--border-color)'
+                        }
+                    }
                 }
             }
         });
     }
 
+    function updateChartLabels(lang) {
+        if (metricsChart) {
+            metricsChart.data.datasets[0].label = translations[lang].total_profit;
+            metricsChart.data.datasets[1].label = translations[lang].customers.replace(':', '');
+            metricsChart.update();
+        }
+    }
+
     Object.values(inputs).forEach(input => {
-        const sliderValueSpan = input.nextElementSibling;
-        if (input.type === 'range' && sliderValueSpan && sliderValueSpan.classList.contains('slider-value')) {
-            sliderValueSpan.textContent = input.value;
+        if (input.type === 'range') {
+            const sliderValueSpan = input.nextElementSibling;
+            const updateSlider = () => {
+                const value = input.value;
+                const min = input.min || 0;
+                const max = input.max || 100;
+                const percent = ((value - min) / (max - min)) * 100;
+                input.style.background = `linear-gradient(to right, var(--accent-color-1) ${percent}%, var(--background-color) ${percent}%)`;
+                if (sliderValueSpan && sliderValueSpan.classList.contains('slider-value')) {
+                    sliderValueSpan.textContent = value;
+                }
+            };
             input.addEventListener('input', () => {
-                sliderValueSpan.textContent = input.value;
+                updateSlider();
                 calculate();
             });
+            updateSlider();
         } else {
             input.addEventListener('input', calculate);
         }
@@ -198,4 +290,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     calculate();
+    setLanguage('english'); // Set default language
 });
