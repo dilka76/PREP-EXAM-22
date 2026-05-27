@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const translations = {
         'english': {
-            'title': 'RESULTSPREDICTOR',
+            'title': 'dilka predictor',
             'subtitle': 'EMAIL CAMPAIGN',
             'language': 'Language',
             'time_unit': 'Time Unit',
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'lets_connect': 'Let\'s connect'
         },
         'bulgarian': {
-            'title': 'ПРОГНОЗАТОР НА РЕЗУЛТАТИ',
+            'title': 'дилкa предсказател',
             'subtitle': 'ИМЕЙЛ КАМПАНИЯ',
             'language': 'Език',
             'time_unit': 'Времева единица',
