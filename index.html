@@ -12,142 +12,143 @@
         <aside class="sidebar">
             <div class="logo">
                 <img src="https://i.imgur.com/AMf9f3R.png" alt="Results Predictor Logo">
-                <h1>RESULTSPREDICTOR</h1>
-                <p>EMAIL CAMPAIGN</p>
+                <h1 data-translate="title">RESULTSPREDICTOR</h1>
+<p data-translate="subtitle">EMAIL CAMPAIGN</p>
+</div>
+<div class="card">
+    <label for="language" data-translate="language">Language</label>
+    <select id="language" name="language">
+        <option value="english">English</option>
+        <option value="bulgarian">Bulgarian</option>
+    </select>
+</div>
+<div class="card">
+    <label for="time-unit" data-translate="time_unit">Time Unit</label>
+    <select id="time-unit" name="time-unit">
+        <option value="week" data-translate="week">Week</option>
+    </select>
+</div>
+<div class="card">
+    <label for="periods" data-translate="periods">Number of Periods</label>
+    <input type="number" id="periods" name="periods" value="12">
+</div>
+<div class="card">
+    <label for="currency" data-translate="currency">Currency</label>
+    <select id="currency" name="currency">
+        <option value="usd">$ USD</option>
+    </select>
+</div>
+<div class="widget-promo card">
+    <h3 data-translate="widget_title">Would you like to leverage a widget like this one in your campaigns?</h3>
+    <p data-translate="widget_p1">Widget like this are always valued by customers.</p>
+    <p data-translate="widget_p2">They are a great way to stimulate engagement and get more people to talk about your products.</p>
+    <p data-translate="widget_p3">It's also a great way to generate leads.</p>
+    <a href="#" data-translate="widget_link">Click here to learn more about how to get one.</a>
+</div>
+<div class="logo-credit">
+    <p data-translate="logo_credit">Logo: Designed by Freepik</p>
+</div>
+</aside>
+<main class="main-content">
+<div class="chart-container card">
+    <h2 data-translate="metrics_over_time">Metrics Over Time</h2>
+    <canvas id="metricsChart"></canvas>
+</div>
+<div class="controls">
+    <div class="revenue-controls">
+        <h2 data-translate="revenue">Revenue</h2>
+        <div class="slider-group">
+            <div class="slider-container card">
+                <label for="launching-customers" data-translate="launching_customers">Launching Customers <span class="tooltip">?</span></label>
+                <input type="range" id="launching-customers" name="launching-customers" min="0" max="1000" value="119">
+                <span class="slider-value">119</span>
             </div>
-            <div class="card">
-                <label for="language">Language</label>
-                <select id="language" name="language">
-                    <option value="english">English</option>
-                </select>
+            <div class="slider-container card">
+                <label for="revenue-per-conversion" data-translate="revenue_per_conversion">Revenue Per Conversion <span class="tooltip">?</span></label>
+                <input type="range" id="revenue-per-conversion" name="revenue-per-conversion" min="0" max="1000" value="64.8" step="0.1">
+                <span class="slider-value">64.8</span>
             </div>
-            <div class="card">
-                <label for="time-unit">Time Unit</label>
-                <select id="time-unit" name="time-unit">
-                    <option value="week">Week</option>
-                </select>
+            <div class="slider-container card">
+                <label for="customer-growth-rate" data-translate="customer_growth_rate">Customer Growth Rate <span class="tooltip">?</span></label>
+                <input type="range" id="customer-growth-rate" name="customer-growth-rate" min="0" max="1" value="0.15" step="0.01">
+                <span class="slider-value">0.15</span>
             </div>
-            <div class="card">
-                <label for="periods">Number of Periods</label>
-                <input type="number" id="periods" name="periods" value="12">
+            <div class="slider-container card">
+                <label for="average-response-rate" data-translate="average_response_rate">Average Response Rate <span class="tooltip">?</span></label>
+                <input type="range" id="average-response-rate" name="average-response-rate" min="0" max="1" value="0.2" step="0.01">
+                <span class="slider-value">0.2</span>
             </div>
-            <div class="card">
-                <label for="currency">Currency</label>
-                <select id="currency" name="currency">
-                    <option value="usd">$ USD</option>
-                </select>
+        </div>
+    </div>
+    <div class="expenses-controls">
+        <h2 data-translate="expenses">Expenses</h2>
+        <div class="slider-group">
+            <div class="slider-container card">
+                <label for="customer-churn-rate" data-translate="customer_churn_rate">Customer Churn Rate <span class="tooltip">?</span></label>
+                <input type="range" id="customer-churn-rate" name="customer-churn-rate" min="0" max="1" value="0.02" step="0.01">
+                <span class="slider-value">0.02</span>
             </div>
-            <div class="widget-promo card">
-                <h3>Would you like to leverage a widget like this one in your campaigns?</h3>
-                <p>Widget like this are always valued by customers.</p>
-                <p>They are a great way to stimulate engagement and get more people to talk about your products.</p>
-                <p>It's also a great way to generate leads.</p>
-                <a href="#">Click here to learn more about how to get one.</a>
+            <div class="slider-container card">
+                <label for="variable-cost" data-translate="variable_cost">Variable Cost <span class="tooltip">?</span></label>
+                <input type="range" id="variable-cost" name="variable-cost" min="0" max="1000" value="10.8" step="0.1">
+                <span class="slider-value">10.8</span>
             </div>
-            <div class="logo-credit">
-                <p>Logo: Designed by Freepik</p>
+            <div class="slider-container card">
+                <label for="fixed-costs" data-translate="fixed_costs">Fixed Costs <span class="tooltip">?</span></label>
+                <input type="range" id="fixed-costs" name="fixed-costs" min="0" max="1000" value="175">
+                <span class="slider-value">175</span>
             </div>
-        </aside>
-        <main class="main-content">
-            <div class="chart-container card">
-                <h2>Metrics Over Time</h2>
-                <canvas id="metricsChart"></canvas>
+            <div class="slider-container card">
+                <label for="starting-cost" data-translate="starting_cost">Starting Cost <span class="tooltip">?</span></label>
+                <input type="range" id="starting-cost" name="starting-cost" min="0" max="1000" value="0">
+                <span class="slider-value">0</span>
             </div>
-            <div class="controls">
-                <div class="revenue-controls">
-                    <h2>Revenue</h2>
-                    <div class="slider-group">
-                        <div class="slider-container card">
-                            <label for="launching-customers">Launching Customers <span class="tooltip">?</span></label>
-                            <input type="range" id="launching-customers" name="launching-customers" min="0" max="1000" value="119">
-                            <span class="slider-value">119</span>
-                        </div>
-                        <div class="slider-container card">
-                            <label for="revenue-per-conversion">Revenue Per Conversion <span class="tooltip">?</span></label>
-                            <input type="range" id="revenue-per-conversion" name="revenue-per-conversion" min="0" max="1000" value="64.8" step="0.1">
-                            <span class="slider-value">64.8</span>
-                        </div>
-                        <div class="slider-container card">
-                            <label for="customer-growth-rate">Customer Growth Rate <span class="tooltip">?</span></label>
-                            <input type="range" id="customer-growth-rate" name="customer-growth-rate" min="0" max="1" value="0.15" step="0.01">
-                            <span class="slider-value">0.15</span>
-                        </div>
-                        <div class="slider-container card">
-                            <label for="average-response-rate">Average Response Rate <span class="tooltip">?</span></label>
-                            <input type="range" id="average-response-rate" name="average-response-rate" min="0" max="1" value="0.2" step="0.01">
-                            <span class="slider-value">0.2</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="expenses-controls">
-                    <h2>Expenses</h2>
-                    <div class="slider-group">
-                        <div class="slider-container card">
-                            <label for="customer-churn-rate">Customer Churn Rate <span class="tooltip">?</span></label>
-                            <input type="range" id="customer-churn-rate" name="customer-churn-rate" min="0" max="1" value="0.02" step="0.01">
-                            <span class="slider-value">0.02</span>
-                        </div>
-                        <div class="slider-container card">
-                            <label for="variable-cost">Variable Cost <span class="tooltip">?</span></label>
-                            <input type="range" id="variable-cost" name="variable-cost" min="0" max="1000" value="10.8" step="0.1">
-                            <span class="slider-value">10.8</span>
-                        </div>
-                        <div class="slider-container card">
-                            <label for="fixed-costs">Fixed Costs <span class="tooltip">?</span></label>
-                            <input type="range" id="fixed-costs" name="fixed-costs" min="0" max="1000" value="175">
-                            <span class="slider-value">175</span>
-                        </div>
-                        <div class="slider-container card">
-                            <label for="starting-cost">Starting Cost <span class="tooltip">?</span></label>
-                            <input type="range" id="starting-cost" name="starting-cost" min="0" max="1000" value="0">
-                            <span class="slider-value">0</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <aside class="summary-sidebar">
-            <div class="summary card">
-                <h2>Campaign Summary</h2>
-                <p>Profitable in week #<span id="profitable-week">1</span></p>
-                <div class="summary-details">
-                    <p>At week #<span id="summary-week">12</span>:</p>
-                    <ul>
-                        <li>Customers: <span id="summary-customers">3052</span></li>
-                        <li>Revenue: <span id="summary-revenue">$39,558.73</span></li>
-                        <li>Expenses: <span id="summary-expenses">$8,693.12</span></li>
-                    </ul>
-                </div>
-                <div class="total-profit">
-                    <p>Total Profit</p>
-                    <p class="profit-amount" id="summary-profit">$30,865.61</p>
-                </div>
-                <div class="summary-metric">
-                    <p>Average Retention</p>
-                    <p><span id="summary-retention">50.00</span> weeks</p>
-                </div>
-                <div class="summary-metric">
-                    <p>Return on investment</p>
-                    <p><span id="summary-roi">355.06</span>%</p>
-                </div>
-            </div>
-            <div class="data-actions">
-                <div class="card">
-                    <button id="download-csv" class="btn-download">Download CSV</button>
-                </div>
-                <div class="card">
-                    <button id="load-csv" class="btn-load">↑ Load CSV</button>
-                </div>
-            </div>
-            <div class="connect card">
-                <h2>Let's connect</h2>
-                <div class="social-icons">
-                    <a href="#" class="social-icon">f</a>
-                    <a href="#" class="social-icon">o</a>
-                    <a href="#" class="social-icon">🔗</a>
-                    <a href="#" class="social-icon">f</a>
-                </div>
-            </div>
+        </div>
+    </div>
+</div>
+</main>
+<aside class="summary-sidebar">
+<div class="summary card">
+    <h2 data-translate="campaign_summary">Campaign Summary</h2>
+    <p><span data-translate="profitable_in_week">Profitable in week #</span><span id="profitable-week">1</span></p>
+    <div class="summary-details">
+        <p><span data-translate="at_week">At week #</span><span id="summary-week">12</span>:</p>
+        <ul>
+            <li><span data-translate="customers">Customers:</span> <span id="summary-customers">3052</span></li>
+            <li><span data-translate="revenue_label">Revenue:</span> <span id="summary-revenue">$39,558.73</span></li>
+            <li><span data-translate="expenses_label">Expenses:</span> <span id="summary-expenses">$8,693.12</span></li>
+        </ul>
+    </div>
+    <div class="total-profit">
+        <p data-translate="total_profit">Total Profit</p>
+        <p class="profit-amount" id="summary-profit">$30,865.61</p>
+    </div>
+    <div class="summary-metric">
+        <p data-translate="average_retention">Average Retention</p>
+        <p><span id="summary-retention">50.00</span> <span data-translate="weeks">weeks</span></p>
+    </div>
+    <div class="summary-metric">
+        <p data-translate="return_on_investment">Return on investment</p>
+        <p><span id="summary-roi">355.06</span>%</p>
+    </div>
+</div>
+<div class="data-actions">
+    <div class="card">
+        <button id="download-csv" class="btn-download" data-translate="download_csv">Download CSV</button>
+    </div>
+    <div class="card">
+        <button id="load-csv" class="btn-load" data-translate="load_csv">↑ Load CSV</button>
+    </div>
+</div>
+<div class="connect card">
+    <h2 data-translate="lets_connect">Let's connect</h2>
+    <div class="social-icons">
+        <a href="#" class="social-icon">f</a>
+        <a href="#" class="social-icon">o</a>
+        <a href="#" class="social-icon">🔗</a>
+        <a href="#" class="social-icon">f</a>
+    </div>
+</div>
         </aside>
     </div>
     <script src="script.js"></script>
